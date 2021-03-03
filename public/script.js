@@ -5,9 +5,9 @@ document
   .addEventListener("click", (e) => {
     e.preventDefault();
 
-    const url = "https://res.cloudinary.com/dtmvrjb50/image/upload/v1614792190/strawberry.jpg"; //document.getElementById("url").value;
-    const publicId = "straw1";//document.getElementById("publicid").value;
-    const tag = "bgremoval"; //document.getElementById("tag").value;
+    const url = document.getElementById("url").value;
+    const publicId = document.getElementById("publicid").value;
+    const tag = document.getElementById("tag").value;
 
     /* validate input */
     let warning = "";
