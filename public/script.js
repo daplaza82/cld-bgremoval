@@ -1,5 +1,3 @@
-
-
 document
   .querySelector('button[type="submit"]')
   .addEventListener("click", (e) => {
@@ -11,26 +9,27 @@ document
 
     /* validate input */
     let warning = "";
-    warning += !url? "<li>Please enter a Cloudinary image URL</li>" : "";
+    warning += !url ? "<li>Please enter a Cloudinary image URL</li>" : "";
     warning += !publicId ? "<li>Please enter Cloudinary publicid</li>" : "";
-    
+
     if (warning)
       return (document.getElementById("warning").innerHTML = warning);
-
-  
 
     document.getElementById("result").innerHTML = result + "Please wait...";
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: url, publicid: publicId, tag: tag }),
     };
 
     fetch("/.netlify/functions/bgremoval", options)
-      .then((res) => res.json())
-      .then(async (res) => {
+      .then((res) => {
         console.log(res);
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
         // const img = document.createElement("img");
         // // img.src = res.b64image;
         // img.src = response.secure_url;
@@ -39,8 +38,6 @@ document
       })
       .catch((err) => {
         console.log(err);
-        document.getElementById(
-          "result"
-        ).textContent = `${err.toString()}`;
+        document.getElementById("result").textContent = `${err.toString()}`;
       });
   });

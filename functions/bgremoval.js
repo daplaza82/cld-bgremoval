@@ -23,12 +23,13 @@ exports.handler = async (event, context) => {
     })
     .then((result) => {
       console.log(result);
-      const retBody = JSON.stringify({
-        message: "success",
-        res: result,
-      });
+      // const retBody = JSON.stringify({
+      //   message: "success",
+      //   res: result,
+      // });
+      const retBody = JSON.stringify({secure_url:result.secure_url})
       console.log(retBody);
-      console.log("oooooooo");
+      console.log("rrrrrrrr");
 
       return {
         statusCode: 200,
