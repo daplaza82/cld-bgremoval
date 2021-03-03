@@ -2,7 +2,10 @@ async function cldUpload(options) {
   try {
     let response = await fetch("/.netlify/functions/bgremoval", options);
     let data = await response.json();
-    console.log(data);
+    const img = document.createElement("img");
+    img.src = data.secure_url;
+    img.alt = "bgremoval";
+    document.getElementById("result").innerHTML = img.outerHTML;
   } catch (error) {
     console.log("client error", error);
   }
@@ -32,7 +35,8 @@ document
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: url, publicid: publicId, tag: tag }),
     };
-    cldUpload(options);
+   cldUpload(options);
+   
 
     // fetch("/.netlify/functions/bgremoval", options)
     //   .then((res) => {

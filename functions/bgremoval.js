@@ -20,6 +20,7 @@ exports.handler = async (event, context) => {
     const result = await cloudinary.uploader.upload(existingUrl, {
       public_id: newPublicId,
       tag: tag,
+      background_removal: 'cloudinary_ai',
     });
     const retBody = JSON.stringify({ secure_url: result.secure_url });
     console.log(retBody);
@@ -38,38 +39,5 @@ exports.handler = async (event, context) => {
     };
   }
 
-  // cloudinary.uploader
-  //   .upload(existingUrl, {
-  //     public_id: newPublicId,
-  //     tag: tag
-  //   })
-  //   .then((result) => {
-  //     console.log(result);
-  //     const retBody = JSON.stringify({secure_url:result.secure_url})
-  //     console.log(retBody);
-  //     console.log("rrrrrrrr");
-
-  //     return {
-  //       statusCode: 200,
-  //       body: retBody,
-  //     };
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //     console.log("error");
-  //     const errBody = {
-  //       statusCode: 500,
-  //       body: JSON.stringify({
-  //         error: error,
-  //       }),
-  //     };
-  //     console.log(errBody);
-  //     console.log("xxxxxxxxxxx")
-  //     return {
-  //       statusCode: 500,
-  //       body: JSON.stringify({
-  //         error: error,
-  //       }),
-  //     };
-  //   });
+  
 };
