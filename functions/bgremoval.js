@@ -1,14 +1,12 @@
-
-
+require("dotenv").config();
+const cloudinary = require("cloudinary").v2;
 exports.handler = async (event, context) => {
-  require("dotenv").config();
-  const cloudinary = require("cloudinary").v2;
   console.log(cloudinary.config.cloud_name);
-  
+
   const existingUrl = JSON.parse(event.body).url;
   const newPublicId = JSON.parse(event.body).publicid;
   const tag = JSON.parse(event.body).tag;
-  console.log(existingUrl,newPublicId,tag)
+  console.log(existingUrl, newPublicId, tag);
 
   cloudinary.uploader
     .upload(existingUrl, {
@@ -22,7 +20,7 @@ exports.handler = async (event, context) => {
         statusCode: 200,
         body: JSON.stringify({
           message: "success",
-          res: result
+          res: result,
         }),
       };
     })
