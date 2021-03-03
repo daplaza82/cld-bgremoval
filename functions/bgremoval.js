@@ -1,8 +1,10 @@
-require("dotenv").config();
-const cloudinary = require("cloudinary").v2;
+
 
 exports.handler = async (event, context) => {
-
+  require("dotenv").config();
+  const cloudinary = require("cloudinary").v2;
+  console.log(cloudinary.config.cloud_name);
+  
   const existingUrl = JSON.parse(event.body).url;
   const newPublicId = JSON.parse(event.body).publicid;
   const tag = JSON.parse(event.body).tag;
@@ -15,6 +17,7 @@ exports.handler = async (event, context) => {
       background_removal: "cloudinary_ai",
     })
     .then((result) => {
+      console.log(result);
       return {
         statusCode: 200,
         body: JSON.stringify({
