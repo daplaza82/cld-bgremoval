@@ -15,7 +15,7 @@ document
     if (warning)
       return (document.getElementById("warning").innerHTML = warning);
 
-    document.getElementById("result").innerHTML = result + "Please wait...";
+    document.getElementById("result").innerHTML = "Please wait...";
 
     const options = {
       method: "POST",
