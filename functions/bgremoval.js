@@ -11,8 +11,7 @@ exports.handler = async (event, context) => {
       tag: tag,
       background_removal: "cloudinary_ai",
     })
-    .then((uploadResult) => {
-      console.log(JSON.stringify(result, null, 1));
+    .then((result) => {
       return {
         statusCode: 200,
         body: JSON.stringify({
