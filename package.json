@@ -1,0 +1,21 @@
+{
+  "name": "cld-bgremove-proto",
+  "version": "1.0.0",
+  "description": "prototype for removing bg",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:lambda": "netlify-lambda install",
+    "start:lambda": "netlify-lambda serve functions"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebeccapeltz/cld-bgremoval.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/rebeccapeltz/cld-bgremoal",
+  "dependencies": {
+    "cloudinary": "^1.23.0",
+    "dotenv": "^8.2.0"
+  }
+}

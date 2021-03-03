@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Screenshot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h1>Cloudinary Background Removal</h1>
+        <div class="instruction">
+            <p>Enter public id and CLD url and optional tag
+            </p>
+        </div>
+        <div class="container">
+            <form id="bgrem-form">
+                <fieldset>
+                    <input type="url" id="url" name="url"  aria-label="URL" placeholder="URL for image to remove form" value="">
+                </fieldset>
+                <fieldset>
+                    <input type="text" id="publicid" name="url" aria-label="publicid" placeholder="Public ID for new image"
+                        value="">
+                </fieldset>
+                <fieldset>
+                    <input type="text" id="tag" name="tag" aria-label="tag" placeholder="Optional tag" value="">
+                </fieldset>
+                <fieldset>
+                    <button type="submit">Create Image with Background Removed</button>
+                </fieldset>
+            </form>
+        </div>
+        <div id="warning"></div>
+        <div id="result"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
