@@ -1,52 +1,75 @@
 require("dotenv").config();
 const cloudinary = require("cloudinary").v2;
 exports.handler = async (event, context) => {
-
-  console.log("config",cloudinary.config({ 
-    cloud_name: process.env.CLOUD_NAME, 
-    api_key: process.env.API_KEY, 
-    api_secret: process.env.API_SECRET
-  }).cloud_name);
-  console.log("logging process.env",process.env.CLOUD_NAME);
- 
+  console.log(
+    "config",
+    cloudinary.config({
+      cloud_name: process.env.CLOUD_NAME,
+      api_key: process.env.API_KEY,
+      api_secret: process.env.API_SECRET,
+    }).cloud_name
+  );
+  console.log("logging process.env", process.env.CLOUD_NAME);
 
   const existingUrl = JSON.parse(event.body).url;
   const newPublicId = JSON.parse(event.body).publicid;
   const tag = JSON.parse(event.body).tag;
   console.log(existingUrl, newPublicId, tag);
 
-  cloudinary.uploader
-    .upload(existingUrl, {
+  try {
+    const result = await cloudinary.uploader.upload(existingUrl, {
       public_id: newPublicId,
-      tag: tag
-    })
-    .then((result) => {
-      console.log(result);
-      const retBody = JSON.stringify({secure_url:result.secure_url})
-      console.log(retBody);
-      console.log("rrrrrrrr");
-
-      return {
-        statusCode: 200,
-        body: retBody,
-      };
-    })
-    .catch((error) => {
-      console.error(error);
-      console.log("error");
-      const errBody = {
-        statusCode: 500,
-        body: JSON.stringify({
-          error: error,
-        }),
-      };
-      console.log(errBody);
-      console.log("xxxxxxxxxxx")
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
-          error: error,
-        }),
-      };
+      tag: tag,
     });
+    const retBody = JSON.stringify({ secure_url: result.secure_url });
+    console.log(retBody);
+    console.log("rrrrrrrr");
+
+    return {
+      statusCode: 200,
+      body: retBody,
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: error,
+      }),
+    };
+  }
+
+  // cloudinary.uploader
+  //   .upload(existingUrl, {
+  //     public_id: newPublicId,
+  //     tag: tag
+  //   })
+  //   .then((result) => {
+  //     console.log(result);
+  //     const retBody = JSON.stringify({secure_url:result.secure_url})
+  //     console.log(retBody);
+  //     console.log("rrrrrrrr");
+
+  //     return {
+  //       statusCode: 200,
+  //       body: retBody,
+  //     };
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //     console.log("error");
+  //     const errBody = {
+  //       statusCode: 500,
+  //       body: JSON.stringify({
+  //         error: error,
+  //       }),
+  //     };
+  //     console.log(errBody);
+  //     console.log("xxxxxxxxxxx")
+  //     return {
+  //       statusCode: 500,
+  //       body: JSON.stringify({
+  //         error: error,
+  //       }),
+  //     };
+  //   });
 };
